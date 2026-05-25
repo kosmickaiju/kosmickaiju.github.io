@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nicole Laureno</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cream:     #F5F0E8;
+      --parchment: #EDE5D4;
+      --tan:       #C8B89A;
+      --walnut:    #7A5C3E;
+      --espresso:  #3D2314;
+      --cherry:    #8B1A2A;
+      --cherry-lt: #C0384A;
+      --cherry-dk: #5A0F1A;
+      --ink:       #1E0F08;
+      --muted:     #6B5040;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 4rem;
+      background: rgba(245, 240, 232, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--tan);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--espresso);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--cherry); }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      gap: 4rem;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 42%;
+      background: var(--parchment);
+      z-index: -1;
+    }
+
+    .hero-text { max-width: 540px; }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cherry);
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      line-height: 1.08;
+      color: var(--espresso);
+      margin-bottom: 1.5rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--cherry);
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 440px;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 2px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--cherry);
+      color: #fff;
+      border: 1px solid var(--cherry);
+    }
+
+    .btn-primary:hover {
+      background: var(--cherry-dk);
+      border-color: var(--cherry-dk);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--espresso);
+      border: 1px solid var(--walnut);
+    }
+
+    .btn-outline:hover {
+      background: var(--parchment);
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .avatar-frame {
+      width: 340px;
+      height: 420px;
+      border: 2px solid var(--tan);
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      color: var(--tan);
+    }
+
+    .avatar-frame::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid var(--parchment);
+    }
+
+    .avatar-icon {
+      font-size: 5rem;
+      opacity: 0.35;
+    }
+
+    .avatar-frame p {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--tan);
+    }
+
+    section { padding: 6rem 4rem; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--cherry);
+      margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      color: var(--espresso);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: var(--cherry);
+      margin: 1.5rem 0 3rem;
+    }
+
+    #about { background: var(--parchment); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-body {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    .about-body p + p { margin-top: 1rem; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .skill-group h4 {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cherry);
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--tan);
+      color: var(--walnut);
+      background: transparent;
+      border-radius: 1px;
+      font-weight: 400;
+    }
+
+    #projects { background: var(--cream); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--parchment);
+      border: 1px solid var(--tan);
+      padding: 2rem;
+      position: relative;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--cherry);
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--cherry);
+      transition: height 0.3s;
+    }
+
+    .project-card:hover::before { height: 100%; }
+
+    .project-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: var(--tan);
+      line-height: 1;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    .project-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--espresso);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      line-height: 1.7;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .project-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--cherry);
+      text-decoration: none;
+      border-bottom: 1px solid var(--cherry);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .project-links a:hover {
+      color: var(--cherry-dk);
+      border-color: var(--cherry-dk);
+    }
+
+    #experience { background: var(--espresso); }
+
+    #experience .section-label { color: var(--tan); }
+    #experience h2 { color: var(--cream); }
+    #experience .divider { background: var(--cherry-lt); }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-left: 1px solid var(--walnut);
+      margin-left: 1rem;
+    }
+
+    .timeline-item {
+      padding: 0 0 3rem 2.5rem;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -5px; top: 6px;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--cherry-lt);
+    }
+
+    .timeline-date {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-item h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--cream);
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-org {
+      font-size: 0.875rem;
+      color: var(--cherry-lt);
+      margin-bottom: 0.75rem;
+    }
+
+    .timeline-item p {
+      font-size: 0.9rem;
+      color: var(--tan);
+      max-width: 580px;
+      line-height: 1.75;
+    }
+
+    #contact { background: var(--parchment); text-align: center; }
+
+    #contact .divider { margin-left: auto; margin-right: auto; }
+
+    .contact-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      background: var(--ink);
+      color: var(--muted);
+      text-align: center;
+      padding: 2rem 4rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+    }
+
+    footer a { color: var(--cherry-lt); text-decoration: none; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-text > * {
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-eyebrow { animation-delay: 0.1s; }
+    h1             { animation-delay: 0.2s; }
+    .hero-desc     { animation-delay: 0.3s; }
+    .btn-group     { animation-delay: 0.4s; }
+    .hero-image    { animation: fadeUp 0.8s 0.3s ease both; }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 7rem 1.5rem 3rem;
+        text-align: center;
+      }
+      .hero::after { display: none; }
+      .hero-desc { max-width: 100%; }
+      .btn-group { justify-content: center; }
+      .hero-image { order: -1; }
+      .avatar-frame { width: 200px; height: 240px; }
+
+      section { padding: 4rem 1.5rem; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Nicole Laureno</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Machine Learning · Cybersecurity</p>
+      <h1>Building systems<br>at the edge of<br><em>data & defense.</em></h1>
+      <p class="hero-desc">
+        I'm a data science student with a passion for machine learning and cybersecurity —
+        from training neural networks to hunting vulnerabilities.
+      </p>
+      <div class="btn-group">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <!-- Replace the avatar-frame div with an <img> tag once you have a photo -->
+      <div class="avatar-frame">
+        <div class="avatar-icon">⬡</div>
+        <p>Your photo here</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About Me</p>
+    <h2>Who I am</h2>
+    <div class="divider"></div>
+    <div class="about-grid">
+      <div class="about-body">
+        <p>
+          I'm a data science student specializing in machine learning and cybersecurity.
+          My work sits at the intersection of these two fields — using ML models to understand
+          and defend against threats, and applying a security mindset to every system I build.
+        </p>
+        <p>
+          Outside of coursework, I compete in CTF challenges, contribute to open-source tools,
+          and build projects that scratch my own curiosity. I believe the best portfolio is
+          one that never stops growing.
+        </p>
+        <p>
+          I'm actively looking for internship and full-time opportunities in ML engineering,
+          data science, or security research. Let's build something interesting together.
+        </p>
+      </div>
+      <div>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h4>Languages</h4>
+            <div class="skill-tags">
+              <span class="tag">Python</span>
+              <span class="tag">SQL</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Bash</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h4>ML / Data</h4>
+            <div class="skill-tags">
+              <span class="tag">PyTorch</span>
+              <span class="tag">scikit-learn</span>
+              <span class="tag">pandas</span>
+              <span class="tag">NumPy</span>
+              <span class="tag">HuggingFace</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h4>Security</h4>
+            <div class="skill-tags">
+              <span class="tag">CTF</span>
+              <span class="tag">Linux</span>
+              <span class="tag">NIST NVD</span>
+              <span class="tag">Burp Suite</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h4>Tools</h4>
+            <div class="skill-tags">
+              <span class="tag">Git</span>
+              <span class="tag">Colab</span>
+              <span class="tag">Jupyter</span>
+              <span class="tag">Docker</span>
+              <span class="tag">Chrome Extensions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label">Selected Work</p>
+    <h2>Projects</h2>
+    <div class="divider"></div>
+    <div class="projects-grid">
+
+      <!-- Project 1 -->
+      <div class="project-card">
+        <div class="project-num">01</div>
+        <h3>Malware Family Classifier</h3>
+        <p>
+          Fine-tuned ResNet-50 on the MALIMG dataset using binary visualization to classify
+          malware families. Integrated GradCAM for model explainability. Achieved strong
+          accuracy with interpretable visual heatmaps.
+        </p>
+        <div class="project-meta">
+          <span class="tag">PyTorch</span>
+          <span class="tag">ResNet-50</span>
+          <span class="tag">GradCAM</span>
+          <span class="tag">MALIMG</span>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank">GitHub →</a>
+          <a href="#" target="_blank">Colab Notebook →</a>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="project-num">02</div>
+        <h3>CVE Debrief</h3>
+        <p>
+          A Chrome extension that fetches and displays recent CVEs from the NIST NVD API.
+          Features filtering by severity, pagination, and CSV export. Built as a practical
+          daily-use security dashboard.
+        </p>
+        <div class="project-meta">
+          <span class="tag">JavaScript</span>
+          <span class="tag">Chrome APIs</span>
+          <span class="tag">NIST NVD</span>
+          <span class="tag">CSS</span>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank">GitHub →</a>
+          <a href="#" target="_blank">Chrome Store →</a>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card">
+        <div class="project-num">03</div>
+        <h3>DQN Lunar Lander</h3>
+        <p>
+          Implemented Deep Q-Networks from scratch to solve the LunarLander-v2 environment.
+          Includes experience replay, target networks, and epsilon-greedy exploration. Also
+          built tabular Q-learning for the Taxi environment.
+        </p>
+        <div class="project-meta">
+          <span class="tag">PyTorch</span>
+          <span class="tag">OpenAI Gym</span>
+          <span class="tag">RL</span>
+          <span class="tag">DQN</span>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank">GitHub →</a>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card">
+        <div class="project-num">04</div>
+        <h3>Pokémon Diffusion Model</h3>
+        <p>
+          Built a diffusion model from scratch trained on Pokémon sprites. Implemented
+          classifier-free guidance and CLIP-based image search with Stable Diffusion
+          for conditional generation.
+        </p>
+        <div class="project-meta">
+          <span class="tag">PyTorch</span>
+          <span class="tag">CLIP</span>
+          <span class="tag">Diffusion</span>
+          <span class="tag">Stable Diffusion</span>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank">GitHub →</a>
+          <a href="#" target="_blank">Report →</a>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="project-card">
+        <div class="project-num">05</div>
+        <h3>NYC Eviction Rate Analysis</h3>
+        <p>
+          Borough-level analysis of NYC eviction rates vs. Airbnb listing density.
+          Used Spearman correlation and Seaborn visualizations to surface relationships
+          between short-term rentals and housing stability.
+        </p>
+        <div class="project-meta">
+          <span class="tag">pandas</span>
+          <span class="tag">Seaborn</span>
+          <span class="tag">SciPy</span>
+          <span class="tag">Data Analysis</span>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank">GitHub →</a>
+        </div>
+      </div>
+
+      <!-- Project 6 — placeholder / add your own -->
+      <div class="project-card">
+        <div class="project-num">06</div>
+        <h3>Your Next Project</h3>
+        <p>
+          This card is a placeholder — replace it with whatever you're working on next.
+          CTF writeups, research papers, or side projects all belong here.
+        </p>
+        <div class="project-meta">
+          <span class="tag">Coming Soon</span>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank">GitHub →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">Background</p>
+    <h2>Experience</h2>
+    <div class="divider"></div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <p class="timeline-date">2022 — Present</p>
+        <h3>B.S. / M.S. Data Science</h3>
+        <p class="timeline-org">Your University</p>
+        <p>
+          Coursework spanning machine learning, deep learning, reinforcement learning,
+          cybersecurity, databases, and data analysis. Capstone: malware family classification
+          using binary visualization and CNN explainability.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <p class="timeline-date">Add your own</p>
+        <h3>Internship / Role Title</h3>
+        <p class="timeline-org">Company Name</p>
+        <p>
+          Describe what you did, what you built or contributed, and what you learned.
+          One to three sentences is perfect. Lead with impact.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <p class="timeline-date">Ongoing</p>
+        <h3>CTF Competitor</h3>
+        <p class="timeline-org">Independent</p>
+        <p>
+          Competing in Capture the Flag challenges covering privilege escalation, binary
+          exploitation, web vulnerabilities, forensics, and cryptography. Beginner-to-intermediate
+          level across multiple platforms.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Get In Touch</p>
+    <h2>Let's talk.</h2>
+    <div class="divider"></div>
+    <p class="contact-desc">
+      Whether you have a role in mind, a project to collaborate on, or just want to chat about
+      ML and security — my inbox is open.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:your@email.com" class="btn btn-primary">Email Me</a>
+      <a href="https://github.com/yourusername" target="_blank" class="btn btn-outline">GitHub</a>
+      <a href="https://linkedin.com/in/yourusername" target="_blank" class="btn btn-outline">LinkedIn</a>
+      <a href="resume.pdf" target="_blank" class="btn btn-outline">Résumé ↓</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Designed &amp; built by Luca · <a href="https://github.com/yourusername/portfolio" target="_blank">View source</a></p>
+  </footer>
+
+</body>
+</html>
