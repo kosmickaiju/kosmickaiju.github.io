@@ -533,7 +533,7 @@
     <div class="about-grid">
       <div class="about-body">
         <p>
-          I am a first-generation college student studying computer science at Duke University with a passion for all things cybersecurity. During my time at Duke, I have developed my cybersecurity skillset through coursework, research, and hands-on projects, spanning from deploying a VPN honeypot utilized at 80+ universities across the U.S including Duke, Columbia, Stanford, and Brown, to conducting security research on satellite communications and the implications of unecnrypted communications on national security.
+          I am a first-generation college student studying computer science at Duke University with a passion for all things cybersecurity. During my time at Duke, I have developed my cybersecurity skillset through coursework, research, and hands-on projects, spanning from deploying a VPN honeypot utilized at 80+ U.S. universities including Duke, Columbia, Stanford, and Brown, to conducting security research on satellite communications and the implications of unencrypted transmissions on national security.
         </p>
         <p>
           Outside of the classroom, I compete in CTF challenges, build and break security tools, and explore new areas of cybersecurity through hands-on projects. I am always trying to learn new skills and expand my knowledge in the field.
@@ -599,10 +599,23 @@
     <h2>Projects</h2>
     <div class="divider"></div>
     <div class="projects-grid">
-
-      <!-- Project 1 -->
       <div class="project-card">
         <div class="project-num">01</div>
+        <h3>Active Directory (AD) Homelab</h3>
+        <p>
+          Built an Active Directory homelab environment to simulate enterprise network scenarios, enabling testing and learning of AD configurations, security policies, and attack simulations in a controlled environment. Simulated attacks including Pass-the-Hash, Kerberoasting, and other common AD attack techniques.
+        </p>
+        <div class="project-meta">
+          <span class="tag">Homelab</span>
+          <span class="tag">Active Directory</span>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank">GitHub →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">02</div>
         <h3>MalVis: Malware Binary Visualization with Computer Vision</h3>
         <p>
             Built CNN-based malware classification system using binary-to-image transformation (fine-tuned ResNet-50 on MALIMG dataset), achieving ~98% accuracy across 25 malware families. Implemented GradCAM explainability pipeline to visualize model attention on malicious binary features.
@@ -612,6 +625,7 @@
           <span class="tag">ResNet-50</span>
           <span class="tag">GradCAM</span>
           <span class="tag">MALIMG Dataset</span>
+          <span class="tag">Jupyter Notebook</span>
         </div>
         <div class="project-links">
           <a href="https://github.com/kosmickaiju/malware-binary-visualization" target="_blank">GitHub →</a>
@@ -619,9 +633,8 @@
         </div>
       </div>
 
-      <!-- Project 2 -->
       <div class="project-card">
-        <div class="project-num">02</div>
+        <div class="project-num">03</div>
         <h3>Red Alert</h3>
         <p>
           A Chrome extension that fetches and displays recent CVEs from the NIST NVD API.
@@ -640,25 +653,9 @@
         </div>
       </div>
 
-      <!-- Project 3 -->
+      <!-- Project 4 — placeholder / add your own -->
       <div class="project-card">
-        <div class="project-num">03</div>
-        <h3>Zero Trust Framework Capstone</h3>
-        <p>
-          Evaluated Zero Trust architecture as a mitigation strategy against supply chain attacks using the 2020 SolarWinds breach as a case study to assess lateral movement prevention and propose federal policy changes reflecting this prevention analysis.
-        </p>
-        <div class="project-meta">
-          <span class="tag">Zero Trust Frameworks</span>
-          <span class="tag">Security Research</span>
-        </div>
-        <div class="project-links">
-          <a href="#" target="_blank">GitHub →</a>
-        </div>
-      </div>
-
-      <!-- Project 6 — placeholder / add your own -->
-      <div class="project-card">
-        <div class="project-num">06</div>
+        <div class="project-num">04</div>
         <h3>Your Next Project</h3>
         <p>
           This card is a placeholder — replace it with whatever you're working on next.
@@ -693,7 +690,7 @@
 
       <div class="timeline-item">
         <p class="timeline-date">May 2024 — July 2024</p>
-        <h3>SWE Intern</h3>
+        <h3>Security Software Development Intern</h3>
         <p class="timeline-org">STINGAR</p>
         <p>
             Built and deployed a Python-based VPN honeypot for the STINGAR platform used at Cisco and across 80+ universities nationwide, achieving 3.7k+ Docker pulls as of July 2026. Implemented logging pipelines using Fluent Bit/Fluentd, Wireshark, and StrongSwan to capture and analyze attacker activity and honeypot performance. Simulated adversarial attacks using Nmap, Wireshark, and Metasploit to study intrusion behavior and honeypot efficiency.
